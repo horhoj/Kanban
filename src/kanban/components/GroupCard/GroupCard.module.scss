@@ -1,0 +1,25 @@
+.GroupCard {
+  border: 1px solid #888;
+
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  min-width: 200px;
+}
+
+.groupTitle {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+}
+
+.todoList {
+  list-style: none;
+  gap: 10px;
+  flex-direction: column;
+  display: flex;
+}
+
+

@@ -1,0 +1,21 @@
+.TodoForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.formButtons {
+  display: flex;
+
+  gap: 10px;
+}
+
+.error {
+  color: red;
+}

@@ -1,0 +1,13 @@
+.TodoCard {
+  border: 1px solid #888;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  align-items: center;
+}
+
+.todoItemButtons {
+  display: flex;
+  gap: 10px;
+}
