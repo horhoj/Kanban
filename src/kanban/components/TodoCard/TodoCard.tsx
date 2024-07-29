@@ -29,7 +29,7 @@ export function TodoCard({ todo }: TodoCardProps) {
     <>
       <Modal isOpen={isEdit} onClose={() => setIsEdit(false)}>
         <TodoForm
-          title={'add todo'}
+          title={'edit todo'}
           initialValues={body}
           onCancel={() => setIsEdit(false)}
           onSubmit={handleEditTodoSubmit}
