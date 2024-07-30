@@ -1,6 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { stat } from 'fs';
+import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GroupFormValues, TodoFormValues, TodoGroup, TodoItem } from './types';
 import { getUUID } from '~/utils/getUUID';
+import { RootState } from '~/store/types';
 
 const SLICE_NAME = 'Kanban';
 
@@ -58,3 +60,24 @@ const { actions, reducer, selectors } = createSlice({
 export const kanbanSlice = { actions, selectors, thunks: {} } as const;
 
 export const kanbanReducer = reducer;
+
+export const todoListGroupNormalizeSelector = createSelector(
+  (state: RootState) => state.kanban.todoList,
+  (state: RootState) => state.kanban.todoGroupList,
+  (todoList, todoGroupList) => {
+    const todoListGroupNormalize: Record<TodoGroup['id'], TodoItem[]> = {};
+
+    todoGroupList.forEach((todoGroup) => {
+      todoListGroupNormalize[todoGroup.id] = [];
+    });
+
+    todoList.forEach((todo) => {
+      // if (todoListGroupNormalize[todo.groupId] === undefined) {
+      //   todoListGroupNormalize[todo.groupId] = [];
+      // }
+      todoListGroupNormalize[todo.groupId].push(todo);
+    });
+
+    return todoListGroupNormalize;
+  },
+);

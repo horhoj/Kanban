@@ -6,13 +6,14 @@ import { Button } from '~/ui/Button';
 import { useAppDispatch, useAppSelector } from '~/store/hooks';
 import { Modal } from '~/ui/Modal';
 import { GroupFormValues } from '~/kanban/types';
-import { kanbanSlice } from '~/kanban/KanbanSlice';
+import { kanbanSlice, todoListGroupNormalizeSelector } from '~/kanban/KanbanSlice';
 
 export function Kanban() {
   const dispatch = useAppDispatch();
   const todoGroupList = useAppSelector((state) => state.kanban.todoGroupList);
-  const todoList = useAppSelector((state) => state.kanban.todoList);
   const [isAddGroup, setIsAddGroup] = useState(false);
+
+  const todoListGroupNormalize = useAppSelector(todoListGroupNormalizeSelector);
 
   const handleAddGroup = () => {
     setIsAddGroup(true);
@@ -40,9 +41,7 @@ export function Kanban() {
         </div>
         <ul className={styles.Kanban}>
           {todoGroupList.map((group) => {
-            return (
-              <GroupCard key={group.id} todoList={todoList.filter((el) => el.groupId === group.id)} group={group} />
-            );
+            return <GroupCard key={group.id} todoList={todoListGroupNormalize[group.id]} group={group} />;
           })}
         </ul>
       </div>
